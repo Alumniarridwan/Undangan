@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Rapat Alumni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-color: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --warning-bg: rgba(239, 68, 68, 0.07);
+            --warning-border: rgba(239, 68, 68, 0.3);
+            --warning-text: #f87171;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Card Container dengan efek Glassmorphism */
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* Gaya Baru: Struktur KOP Resmi */
+        .official-kop {
+            margin-bottom: 25px;
+        }
+
+        .kop-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .kop-subtitle {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Garis Pembatas KOP Surat Khas Resmi */
+        .kop-line {
+            margin-top: 12px;
+            border: none;
+            height: 3px;
+            background: var(--accent-gradient);
+            position: relative;
+        }
+
+        .kop-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .institution-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-secondary); 
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Box Penerima Tamu */
+        .guest-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 22px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .label-yth {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .guest-name {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: capitalize;
+            margin-bottom: 12px;
+        }
+
+        .label-status {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            margin-bottom: 4px;
+        }
+
+        .guest-role {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Isi Undangan */
+        .opening-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        /* Detail Acara (Rincian) */
+        .event-details {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .detail-item i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            margin-top: 3px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .detail-content h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2px;
+        }
+
+        .detail-content p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Box Peringatan Keras (Wajib Hadir) */
+        .warning-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-left: 4px solid #ef4444;
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .warning-box i {
+            font-size: 1.8rem;
+            color: #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        .warning-text h4 {
+            font-size: 0.95rem;
+            color: #ef4444;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .warning-text p {
+            font-size: 0.88rem;
+            color: var(--warning-text);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Responsive Tweak */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .kop-title {
+                font-size: 0.95rem;
+            }
+            .kop-subtitle {
+                font-size: 0.75rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .institution-name {
+                font-size: 1.05rem;
+            }
+            .guest-name {
+                font-size: 1.25rem;
+            }
+            .warning-box {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="official-kop">
+            <div class="kop-title">Keluarga Besar Alumni</div>
+            <div class="kop-subtitle">Pondok Pesantren Ar-Ridwan</div>
+            <div class="kop-line"></div>
+        </div>
+
+        <p class="subtitle">Undangan</p>
+        <h1>Rapat  Alumni</h1>
+        <p class="institution-name">Pondok Pesantren Ar-Ridwan</p>
+
+        <div class="guest-box">
+            <div class="label-yth">Kepada Yth.</div>
+            <div class="guest-name" id="namaTamu">-</div>
+            <div class="label-status">Ditunjuk sebagai</div>
+            <div class="guest-role" id="jabatanTamu">-</div>
+        </div>
+
+        <p class="opening-text">
+            sehubung pentingnya membangun pondasi alumni Pondok Pesantren AR-RIDWAN yang solid kami mengundang saudara/i pada pertemuan yang akan dilaksanakan pada :
+        </p>
+
+        <div class="event-details">
+            <div class="detail-item">
+                <i class="fa-regular fa-calendar-days"></i>
+                <div class="detail-content">
+                    <h3>Hari / Tanggal</h3>
+                    <p>Sabtu, 20 Juni 2026</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fa-regular fa-clock"></i>
+                <div class="detail-content">
+                    <h3>Waktu</h3>
+                    <p>13.00 WIB s.d Selesai</p>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="detail-content">
+                    <h3>Tempat</h3>
+                    <p>Masjid PonPes Ar-Ridwan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div class="warning-text">
+                <h4>Wajib Hadir!</h4>
+                <p>Tanpa kalian Rapat kali ini tidak ada maknanya <strong>instruksi mutlak</strong>. Tidak ada toleransi ketidakhadiran kecuali karena uzur syar'i yang darurat.</p>
+            </div>
+        </div>
+
+        <p class="footer-text">
+            Demikian undangan ini disampaikan untuk dijadikan perhatian sepenuhnya. Terima kasih.
+        </p>
+    </div>
+
+    <script>
+        function getUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            let nama = urlParams.get('nama');
+            let jabatan = urlParams.get('jabatan');
+
+            if (!nama) nama = "Sobat Alumni";
+            if (!jabatan) jabatan = "Anggota Alumni";
+
+            nama = decodeURIComponent(nama);
+            jabatan = decodeURIComponent(jabatan);
+
+            document.getElementById('namaTamu').innerText = nama;
+            document.getElementById('jabatanTamu').innerText = jabatan;
+        }
+
+        window.onload = getUrlParameters;
+    </script>
+</body>
+</html>
